@@ -36,9 +36,9 @@ namespace Vehicles.Service
 
         }
 
-        public async Task UpdateModelAsync(int id, int madeId, string name, string abrv)
+        public async Task UpdateModelAsync(int id, string name, string abrv)
         {
-            await ModelRepository.UpdateModelAsync(id, madeId, name, abrv);
+            await ModelRepository.UpdateModelAsync(id, name, abrv);
         }
     }
 }

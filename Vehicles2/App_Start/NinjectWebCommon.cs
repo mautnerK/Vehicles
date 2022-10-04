@@ -18,6 +18,8 @@ namespace Vehicles.App_Start
     using Vehicles.Service;
     using Vehicles.Service.Common;
     using WebApiContrib.IoC.Ninject;
+    using static Vehicles2.App_Start.AutoMapperModule;
+
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -45,11 +47,13 @@ namespace Vehicles.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var kernel = new StandardKernel(new Vehicles2.App_Start.AutoMapperModule());
+            var root = kernel.Get<Root>();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                
                 RegisterServices(kernel);
                 GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
                 return kernel;

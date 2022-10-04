@@ -9,8 +9,8 @@ namespace Vehicles.Model.Common
     public interface IModel
     {
         int ID { get; set; }
+        int MakeID { get; set; }
         string Name { get; set; }
-        string Abbreviation { get; set; }
-        int VehicleMadeID { get; set; }
+        string Abrv { get; set; }
     }
 }

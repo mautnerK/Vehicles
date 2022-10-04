@@ -36,8 +36,9 @@ namespace Vehicles.Repository
                 {
                     IModel Model = new Model.Model();
                     Model.ID = int.Parse(oReader["Id"].ToString());
+                    Model.MakeID = int.Parse(oReader["MakeId"].ToString());
                     Model.Name = oReader["Name"].ToString();
-                    Model.Abbreviation = oReader["Abrv"].ToString();
+                    Model.Abrv = oReader["Abrv"].ToString();
                     ModelList.Add(Model);
                 }
             }
@@ -56,7 +57,7 @@ namespace Vehicles.Repository
                 {
                     Model.ID = int.Parse(oReader["Id"].ToString());
                     Model.Name = oReader["Name"].ToString();
-                    Model.Abbreviation = oReader["Abrv"].ToString();
+                    Model.Abrv = oReader["Abrv"].ToString();
                 }
             }
             connection.Close();
@@ -72,30 +73,34 @@ namespace Vehicles.Repository
         }
         public async Task SaveNewModelAsync(IModel vehicle2Model)
         {
-            string commandtext = @"INSERT INTO VehicleModel (Name, Abrv) VALUES(@Name, @Abbreviation)";
+            string commandtext = @"INSERT INTO VehicleModel (MakeId, Name, Abrv) VALUES(@MakeID, @Name, @Abrv)";
             using (connection)
             {
                 cmd = new SqlCommand(commandtext, connection);
+                cmd.Parameters.AddWithValue("@MakeID", vehicle2Model.MakeID);
                 cmd.Parameters.AddWithValue("@Name", vehicle2Model.Name);
-                cmd.Parameters.AddWithValue("@Abbreviation", vehicle2Model.Abbreviation);
+                cmd.Parameters.AddWithValue("@Abrv", vehicle2Model.Abrv);
                 connection.Open();
                 await cmd.ExecuteNonQueryAsync();
                 connection.Close();
             }
         }
-        public async Task UpdateModelAsync(int id, int madeId, string name, string abrv)
+        public async Task UpdateModelAsync(int id, string name, string abrv)
         {
             if (name != "")
             {
                 cmd = new SqlCommand("UPDATE VehicleModel Set Name='" + name + "' WHERE ID='" + id + "'", connection);
+                connection.Open();
                 await cmd.ExecuteNonQueryAsync();
+                connection.Close();
             }
             if (abrv != "")
             {
-                cmd = new SqlCommand("UPDATE VehicleModel Set Abbreviation='" + abrv + "' WHERE ID='" + id + "'", connection);
+                cmd = new SqlCommand("UPDATE VehicleModel Set Abrv='" + abrv + "' WHERE ID='" + id + "'", connection);
+                connection.Open();
                 await cmd.ExecuteNonQueryAsync();
+                connection.Close();
             }
-            connection.Close();
         }
         private async Task<StringBuilder> AddFilter(Filtering filter, StringBuilder commandString)
         {

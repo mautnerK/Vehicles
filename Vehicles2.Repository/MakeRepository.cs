@@ -36,7 +36,7 @@ namespace Vehicles.Repository
                     IMake Make = new Make(); 
                     Make.ID = int.Parse(oReader["Id"].ToString());
                     Make.Name = oReader["Name"].ToString();
-                    Make.Abbreviation = oReader["Abrv"].ToString();
+                    Make.Abrv = oReader["Abrv"].ToString();
                     MakeList.Add(Make);
                 }
             }
@@ -54,7 +54,7 @@ namespace Vehicles.Repository
                 {
                     Make.ID = int.Parse(oReader["Id"].ToString());
                     Make.Name = oReader["Name"].ToString();
-                    Make.Abbreviation = oReader["Abrv"].ToString();
+                    Make.Abrv = oReader["Abrv"].ToString();
                 }
             }
             connection.Close();
@@ -69,12 +69,12 @@ namespace Vehicles.Repository
     }
         public async Task SaveNewMakeAsync(IMake vehicle2Make)
         {
-            string commandtext = @"INSERT INTO VehicleMake (Name, Abrv) VALUES(@Name, @Abbreviation)";
+            string commandtext = @"INSERT INTO VehicleMake (Name, Abrv) VALUES(@Name, @Abrv)";
             using (connection)
             {
                 cmd = new SqlCommand(commandtext, connection);
                 cmd.Parameters.AddWithValue("@Name", vehicle2Make.Name);
-                cmd.Parameters.AddWithValue("@Abbreviation", vehicle2Make.Abbreviation);
+                cmd.Parameters.AddWithValue("@Abrv", vehicle2Make.Abrv);
                 connection.Open();
                 await cmd.ExecuteNonQueryAsync();
                 connection.Close();
@@ -87,7 +87,7 @@ namespace Vehicles.Repository
             }
             if (abrv != "")
             {
-                cmd = new SqlCommand("UPDATE VehicleMake Set Abbreviation='" + abrv + "' WHERE ID='" + id + "'", connection);
+                cmd = new SqlCommand("UPDATE VehicleMake Set Abrv='" + abrv + "' WHERE ID='" + id + "'", connection);
                 await cmd.ExecuteNonQueryAsync();
             }
             connection.Close();

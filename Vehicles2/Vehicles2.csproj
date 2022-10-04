@@ -58,9 +58,6 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper.Contrib.Autofac.DependencyInjection, Version=5.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.Contrib.Autofac.DependencyInjection.5.6.0\lib\netstandard2.0\AutoMapper.Contrib.Autofac.DependencyInjection.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -235,6 +232,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperModule.cs" />
     <Compile Include="App_Start\AutoMapperProfile.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -366,33 +364,33 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Vehicels2.Model.Common\Vehicles.Model.Common.csproj">
+    <ProjectReference Include="..\Vehicels2.Model.Common\Vehicles2.Model.Common.csproj">
       <Project>{3AB7E678-1525-4D56-AE9F-DFB01A9D419F}</Project>
-      <Name>Vehicles.Model.Common</Name>
+      <Name>Vehicles2.Model.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vehicles2.Common\Vehicles.Common.csproj">
+    <ProjectReference Include="..\Vehicles2.Common\Vehicles2.Common.csproj">
       <Project>{F15934F5-63C4-40CE-9FF6-2D7743B5216C}</Project>
-      <Name>Vehicles.Common</Name>
+      <Name>Vehicles2.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vehicles2.Model\Vehicles.Model.csproj">
+    <ProjectReference Include="..\Vehicles2.Model\Vehicles2.Model.csproj">
       <Project>{647BCFD5-7C7E-4C7A-AF30-823BEFE1E374}</Project>
-      <Name>Vehicles.Model</Name>
+      <Name>Vehicles2.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vehicles2.Repository.Common\Vehicles.Repository.Common.csproj">
+    <ProjectReference Include="..\Vehicles2.Repository.Common\Vehicles2.Repository.Common.csproj">
       <Project>{DE4B7C0D-42F7-420C-AC5F-769357B595FB}</Project>
-      <Name>Vehicles.Repository.Common</Name>
+      <Name>Vehicles2.Repository.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vehicles2.Repository\Vehicles.Repository.csproj">
+    <ProjectReference Include="..\Vehicles2.Repository\Vehicles2.Repository.csproj">
       <Project>{74A91147-DB3A-412B-A1FB-A9DA1510724D}</Project>
-      <Name>Vehicles.Repository</Name>
+      <Name>Vehicles2.Repository</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vehicles2.Service.Common\Vehicles.Service.Common.csproj">
+    <ProjectReference Include="..\Vehicles2.Service.Common\Vehicles2.Service.Common.csproj">
       <Project>{3989236E-78E3-466B-BA28-B8249EA39EF8}</Project>
-      <Name>Vehicles.Service.Common</Name>
+      <Name>Vehicles2.Service.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Vehicles2.Service\Vehicles.Service.csproj">
+    <ProjectReference Include="..\Vehicles2.Service\Vehicles2.Service.csproj">
       <Project>{E41E9B64-386E-44DF-9EE7-A946FF6DAE8C}</Project>
-      <Name>Vehicles.Service</Name>
+      <Name>Vehicles2.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

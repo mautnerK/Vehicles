@@ -15,6 +15,6 @@ namespace Vehicles.Service.Common
         Task<IModel> GetModelByIdAsync(int id);
         Task RemoveModelAsync(int id);
         Task SaveNewModelAsync(IModel vehiclesModel);
-        Task UpdateModelAsync(int id, int madeId, string name, string abrv);
+        Task UpdateModelAsync(int id, string name, string abrv);
     }
 }

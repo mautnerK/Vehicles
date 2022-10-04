@@ -10,6 +10,6 @@ namespace Vehicles.Model.Common
     {
         int ID { get; set; }
         string Name { get; set; }
-        string Abbreviation { get; set; }
+        string Abrv { get; set; }
     }
 }

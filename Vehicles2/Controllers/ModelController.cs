@@ -15,7 +15,7 @@ namespace Vehicles.Controllers
 {
     public class ModelController : ApiController
     {
-        private readonly IMapper mapper;
+        private readonly AutoMapper.IMapper mapper;
         protected IModelService modelService { get; private set; }
         public ModelController(IModelService iModelService, IMapper imapper)
         {
@@ -54,7 +54,7 @@ namespace Vehicles.Controllers
             if (modelList != null)
             {
                 List<ModelViewModel> modelViewModellist = new List<ModelViewModel>();
-                foreach (IMake vehicle in modelList)
+                foreach (IModel vehicle in modelList)
                 {
                     var vehicleViewModel = mapper.Map<ModelViewModel>(vehicle);
                     modelViewModellist.Add(vehicleViewModel);
@@ -81,7 +81,7 @@ namespace Vehicles.Controllers
             }
         }
         [HttpPut]
-        public async Task<HttpResponseMessage> UpdateModelAsync(int id, int madeId, string name, string abrv)
+        public async Task<HttpResponseMessage> UpdateModelAsync(int id, string name, string abrv)
         {
             IModel vehicle = await modelService.GetModelByIdAsync(id);
             if (vehicle.Name == null)
@@ -90,7 +90,7 @@ namespace Vehicles.Controllers
             }
             else
             {
-                await modelService.UpdateModelAsync(id, madeId, name, abrv);
+                await modelService.UpdateModelAsync(id, name, abrv);
                 return Request.CreateResponse(HttpStatusCode.OK, "Vehicle make updated");
             }
         }

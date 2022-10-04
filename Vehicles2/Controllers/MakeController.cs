@@ -17,7 +17,7 @@ namespace Vehicles.Controllers
 {
     public class MakeController : ApiController
     {
-        private readonly IMapper mapper;
+        private readonly AutoMapper.IMapper mapper;
         protected IMakeService makeService { get; private set; }
         public MakeController(IMakeService iMakeService, IMapper imapper)
         {
